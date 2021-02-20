@@ -1,24 +1,25 @@
-const element = React.createElement(
-	'div',
-	{},
-	'Hello World',
-	React.createElement('h2', { className: 'leela' }, 'Leela Web Dev')
-)
+function render() {
+	const element = `<div>
+<div>Hello World</div>
+<div><input type="text"></div>
+<div>${new Date().toLocaleTimeString()}</div>
+</div>`
 
-const channelName = 'Leela Web Dev'
+	document.getElementById('app1').innerHTML = element
 
-function getChannelName() {
-	if (channelName === 'Leela Web Dev') return <div>{channelName}</div>
-	else return <div>Else Part</div>
+	const element2 = React.createElement(
+		'div',
+		null,
+		React.createElement('div', null, 'Hello world'),
+		React.createElement(
+			'div',
+			null,
+			React.createElement('input', { type: 'text' })
+		),
+		React.createElement('div', null, new Date().toLocaleTimeString())
+	)
+
+	ReactDOM.render(element2, document.getElementById('app2'))
 }
 
-const element2 = (
-	<div>
-		<div className='leela' tabIndex='1'>
-			Hello World with JSx
-		</div>
-		{getChannelName()}
-	</div>
-)
-
-ReactDOM.render(element2, document.getElementById('app'))
+setInterval(render, 1000)
